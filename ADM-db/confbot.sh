@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+sdirx="drowkid/bot"
 source <(curl -sSL "https://raw.githubusercontent.com/rudi9999/Herramientas/main/module/module")
 
 REQUEST="https://raw.githubusercontent.com/rudi9999/TeleBotGen/main"

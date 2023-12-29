@@ -1,6 +1,6 @@
 #!/bin/bash
-
-CIDdir="$PREFIX/etc/ADM-db"
+sdirx="drowkid/bot"
+CIDdir="$PREFIX/etc/${sdirx}"
 #IVAR="$PREFIX/etc/http-instas"
 IVAR="${CIDdir}/key-use" && [[ ! -e ${IVAR} ]] && touch ${IVAR}
 NID="${CIDdir}/Key-ID"

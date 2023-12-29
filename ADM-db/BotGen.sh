@@ -1,6 +1,6 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
-
+sdirx="drowkid/bot"
 stopBot(){
 	printf "\n\n\033[33;1m              SALIENDO DEL MODO MONITOR\n\n"
 	sleep 3
@@ -9,7 +9,7 @@ stopBot(){
 
 trap "stopBot" INT TERM
   
-CIDdir=$PREFIX/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
+CIDdir=$PREFIX/etc/${sdirx} && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
 CID="${CIDdir}/User-ID"
 NID="${CIDdir}/Key-ID"
 backup="$HOME/user-backup"
