@@ -16,9 +16,9 @@ backup="$HOME/user-backup"
 keytxt="${CIDdir}/keys" && [[ ! -d ${keytxt} ]] && mkdir ${keytxt}
 scriptDIR="${CIDdir}/script"
 [[ -e $PREFIX/etc/texto-bot ]] && rm $PREFIX/etc/texto-bot
-conf_json=${CIDdir}/conf.json
+data.json=${CIDdir}/data.json
 tmp_json=${CIDdir}/tmp.json
-confJSON=${CIDdir}/conf.json
+confJSON=${CIDdir}/data.json
 tmpJSON=${CIDdir}/tmp.json
 LINE="━━━━━━━━━━━━━━━"
 
@@ -316,7 +316,7 @@ btn_conf(){
 	PIDGEN=$(ps aux|grep -v grep|grep -w "BotGen-server.sh")
 	[[ $PIDGEN ]] && ShellBot.InlineKeyboardButton --button 'botao_conf' --line 2 --text 'reset' --callback_data '/reset edit'
 
-	length=$(jq '.script | length' ${CIDdir}/conf.json)
+	length=$(jq '.script | length' ${CIDdir}/data.json)
 	script_def=$(jq -r '.default' < ${confJSON})
 	if [[ "$length" -ge "2" ]]; then
 		ShellBot.InlineKeyboardButton --button 'botao_conf' --line 3 --text 'menu conf Key' --callback_data '/menukey edit'
@@ -365,7 +365,7 @@ btn_keymenu(){
 	unset botao_keyMenu
 	botao_keyMenu=''
 	length=$(jq '.script | length' ${confJSON})
-	def=$(jq -r '.default' < $conf_json)
+	def=$(jq -r '.default' < $data.json)
 	n=1
 	for (( i = 0; i < ${length}; i++ )); do
 		name=$(cat ${confJSON}|jq -r .script[$i].name)

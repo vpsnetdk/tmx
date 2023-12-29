@@ -33,7 +33,7 @@ fun_ip () {
 
 # LOOP PARA EXECUCAO DO PROGRAMA
 listen_fun () {
-  port=$(jq -r '.port.nc' < ${CIDdir}/conf.json)
+  port=$(jq -r '.port.nc' < ${CIDdir}/data.json)
   if [[ "$port" != @("null"|"") ]]; then
     local PORTA="$port"
   else
@@ -109,7 +109,7 @@ if [[ ! -e $DIRETORIOKEY/key.fija ]]; then
     #key usada por el usuario XXXXXXX
     usuario=$(cat $DIRETORIOKEY.name)
 
-    if [[ ${usuario} -ne $(jq -r '.users.admin.id' < ${CIDdir}/conf.json) ]]; then
+    if [[ ${usuario} -ne $(jq -r '.users.admin.id' < ${CIDdir}/data.json) ]]; then
     	kn=$(cat ${NID}|grep "${usuario}")
     	kn2=$(echo "$kn"|awk -F ' ' '{print $2}')
     	kn3=$(echo "$kn"|awk -F ' ' '{print $3}')

@@ -328,7 +328,7 @@ custom(){
 	}
 
 	selection=$((${selection} - 1))
-	[[ ! $(cat ${CIDdir}/conf.json|jq -r .script[${selection}].status) = "ON" ]] && stat="ON" || stat="OFF"
+	[[ ! $(cat ${CIDdir}/data.json|jq -r .script[${selection}].status) = "ON" ]] && stat="ON" || stat="OFF"
 	jq --argjson a "${selection}" --arg b "$stat" '.script[$a] += {"status":$b}' < ${confJSON} > ${tmpJSON}
 	chekJSON
 	return 1

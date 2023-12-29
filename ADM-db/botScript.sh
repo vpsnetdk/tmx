@@ -67,7 +67,7 @@ extra(){
 
 #	AYUDA
 ayuda_src(){
-	adm="$(jq -r .users.admin.username < ${CIDdir}/conf.json)"
+	adm="$(jq -r .users.admin.username < ${CIDdir}/data.json)"
 	[[ $adm = "null" ]] && adm=drowkid01
 	bot_retorno="$LINE\n"
 	bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
@@ -499,8 +499,8 @@ key_menu(){
 	fi
 
 	btn_keymenu
-	def=$(jq -r '.default' < $conf_json)
-	def=$(jq -r .script[$def].name < $conf_json)
+	def=$(jq -r '.default' < $data.json)
+	def=$(jq -r .script[$def].name < $data.json)
 	bot_retorno="$LINE\n"
 	bot_retorno+=" Script default: $def ✅\n"
 	bot_retorno+="$LINE"
