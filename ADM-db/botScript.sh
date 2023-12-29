@@ -71,7 +71,7 @@ ayuda_src(){
 	[[ $adm = "null" ]] && adm=drowkid01
 	bot_retorno="$LINE\n"
 	bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-	bot_retorno+="             ⚜ by @drowkid01 ⚜\n"
+	bot_retorno+="             📍 by @drowkid01 📍\n"
 	bot_retorno+="$LINE\n"
 	 if [[ ! "$admin_id" = "${chatuser}" ]]; then
 		 if [[ ! $(echo "$user_id"|grep "${chatuser}") = "" ]]; then
@@ -324,7 +324,7 @@ menu_src(){
 		 if [[ $(echo "$user_id"|grep "${chatuser}") = "" ]]; then
 		   	bot_retorno="$LINE\n"
 		 	bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-		 	bot_retorno+="             ⚜ by @drowkid01 ⚜\n"
+		 	bot_retorno+="             📍 by @drowkid01 📍\n"
 		 	bot_retorno+="$LINE\n"
 		 	bot_retorno+="    ⚠️ <u>Aun no tienes acceso</u> ⚠️\n"
 		 	bot_retorno+="$LINE\n"
@@ -344,7 +344,7 @@ menu_src(){
 
 		 	bot_retorno="$LINE\n"
 		 	bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-		 	bot_retorno+="             ⚜ by @drowkid01 ⚜\n"
+		 	bot_retorno+="             📍 by @drowkid01 📍\n"
 		 	bot_retorno+="$LINE\n"
 		 	bot_retorno+="<u>TU ID</u>: <code>${chatuser}</code>\n"
 		 	bot_retorno+="<u>Dias restantes</u>: $EXPTIME\n"
@@ -673,7 +673,7 @@ myid_src(){
 
   bot_retorno="$LINE\n"
   bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-  bot_retorno+="             ⚜ by @drowkid01 ⚜\n"
+  bot_retorno+="             📍 by @drowkid01 📍\n"
   bot_retorno+="$LINE\n"
   bot_retorno+="Recuerda primero debes contactar\n"
   bot_retorno+="a @$var y arreglar el 💸 pago 💸\n"
@@ -725,7 +725,7 @@ addID_reply(){
 
     bot_retor="$LINE\n"
     bot_retor+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-    bot_retor+="             ⚜ by @drowkid01 ⚜\n"
+    bot_retor+="             📍 by @drowkid01 📍\n"
     bot_retor+="$LINE\n"
     bot_retor+="El Administrador te autorizo a\n"
     bot_retor+="usar el bot generador de keys\n"
@@ -787,7 +787,7 @@ send_admin(){
 
 	bot_retorno="$LINE\n"
 	bot_retorno+="     ⠀⠀⠀⠀◍ ᴅᴏɴᴘᴀᴛᴏʙᴏᴛ ◍\n"
-	bot_retorno+="             ⚜ by @drowkid01 ⚜\n"
+	bot_retorno+="             📍 by @drowkid01 📍\n"
 	bot_retorno+="$LINE\n"
 	bot_retorno+="      ✅ ID enviado al admin ✅\n"
 	bot_retorno+="$LINE"
