@@ -1,12 +1,12 @@
 #!/bin/bash
 
-CIDdir="/etc/ADM-db"
-#IVAR="/etc/http-instas"
+CIDdir="$PREFIX/etc/ADM-db"
+#IVAR="$PREFIX/etc/http-instas"
 IVAR="${CIDdir}/key-use" && [[ ! -e ${IVAR} ]] && touch ${IVAR}
 NID="${CIDdir}/Key-ID"
 # FUNCAO PARA DETERMINAR O IP
 remover_key_usada () {
-  local DIR="/etc/http-shell"
+  local DIR="$PREFIX/etc/http-shell"
   i=0
   [[ -z $(ls $DIR|grep -v "ERROR-KEY") ]] && return
   for arqs in `ls $DIR|grep -v "ERROR-KEY"|grep -v ".name"`; do
@@ -20,14 +20,14 @@ remover_key_usada () {
 }
 
 fun_ip () {
-  if [[ ! -e /etc/MEU_IP ]]; then
+  if [[ ! -e $PREFIX/etc/MEU_IP ]]; then
     local MIP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
     local MIP2=$(wget -qO- ipv4.icanhazip.com)
     [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
-    echo "$IP" > /etc/MEU_IP
+    echo "$IP" > $PREFIX/etc/MEU_IP
     echo "$IP"
   else
-    echo "$(cat /etc/MEU_IP)"
+    echo "$(cat $PREFIX/etc/MEU_IP)"
   fi
 }
 
@@ -45,7 +45,7 @@ listen_fun () {
 
 # SERVER EXECUTAVEL
 server_fun(){
-  DIR="/etc/http-shell" #DIRETORIO DAS KEYS ARMAZENADAS
+  DIR="$PREFIX/etc/http-shell" #DIRETORIO DAS KEYS ARMAZENADAS
   if [[ ! -d $DIR ]]; then mkdir $DIR; fi
     read URL
     KEY=$(echo $URL|cut -d' ' -f2|cut -d'/' -f2) && [[ ! $KEY ]] && KEY="ERRO" #KEY

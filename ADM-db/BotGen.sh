@@ -9,13 +9,13 @@ stopBot(){
 
 trap "stopBot" INT TERM
   
-CIDdir=/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
+CIDdir=$PREFIX/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
 CID="${CIDdir}/User-ID"
 NID="${CIDdir}/Key-ID"
 backup="$HOME/user-backup"
 keytxt="${CIDdir}/keys" && [[ ! -d ${keytxt} ]] && mkdir ${keytxt}
 scriptDIR="${CIDdir}/script"
-[[ -e /etc/texto-bot ]] && rm /etc/texto-bot
+[[ -e $PREFIX/etc/texto-bot ]] && rm $PREFIX/etc/texto-bot
 conf_json=${CIDdir}/conf.json
 tmp_json=${CIDdir}/tmp.json
 confJSON=${CIDdir}/conf.json

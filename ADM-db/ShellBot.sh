@@ -15,7 +15,7 @@
 #						e funções que permitem ao desenvolvedor:
 #
 #							* Gerenciar grupos, canais e membros.
-#							* Enviar mensagens, documentos, músicas, contatos e etc.
+#							* Enviar mensagens, documentos, músicas, contatos e $PREFIX.
 #							* Enviar teclados (KeyboardMarkup e InlineKeyboard).
 #							* Obter informações sobre membros, arquivos, grupos e canais.
 #							* Para mais informações consulte a documentação:

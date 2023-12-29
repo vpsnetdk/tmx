@@ -29,14 +29,14 @@ donar(){
 }
 
 donar_OnOff(){
-	if [[ ! -e "/etc/donar_active.txt" ]]; then
-		echo "on" > /etc/donar_active.txt
+	if [[ ! -e "	$PREFIX/etc/donar_active.txt" ]]; then
+		echo "on" > $PREFIX/etc/donar_active.txt
 		local bot_retorno="$LINE\n"
         bot_retorno+="Donar: <u>ON</u> ✅\n"
         bot_retorno+="$LINE\n"
         msj_fun
     else
-    	rm -rf /etc/donar_active.txt
+    	rm -rf $PREFIX/etc/donar_active.txt
     	local bot_retorno="$LINE\n"
     	bot_retorno+="Donar: <u>OFF</u> ❌\n"
     	bot_retorno+="$LINE\n"
@@ -148,7 +148,7 @@ Restart=always
 RestartSec=3s
 
 [Install]
-WantedBy=multi-user.target" > /etc/systemd/system/BotGen-server.service
+WantedBy=multi-user.target" > $PREFIX/etc/systemd/system/BotGen-server.service
 
 		systemctl enable BotGen-server
     	systemctl start BotGen-server
@@ -157,7 +157,7 @@ WantedBy=multi-user.target" > /etc/systemd/system/BotGen-server.service
 	else
 		systemctl stop BotGen-server
 		systemctl disable BotGen-server
-		rm /etc/systemd/system/BotGen-server.service
+		rm $PREFIX/etc/systemd/system/BotGen-server.service
 		btn_conf
 		menu_src
 	fi
@@ -213,7 +213,7 @@ gerar_key () {
 		return 0
 	fi
 
-	DIR="/etc/http-shell"
+	DIR="$PREFIX/etc/http-shell"
 	LIST="lista-arq"
 
 	P=$(jq -r '.port.nc' < ${confJSON})
@@ -385,7 +385,7 @@ menu_src(){
 	 	_usor=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
 
 	 	unset os_sys
-	 	os_sys=$(cat -n /etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
+	 	os_sys=$(cat -n $PREFIX/etc/issue |grep 1 |cut -d' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
 
 		 unset PID_GEN
 		 PID_GEN=$(ps x|grep -v grep|grep -w "BotGen-server.sh")
@@ -847,7 +847,7 @@ comand(){
 	    			esac
 	    		 fi
 	    		 sleep 5
-	    		 [[ -e "/etc/donar_active.txt" ]] && donar
+	    		 [[ -e "$PREFIX/etc/donar_active.txt" ]] && donar
 	    	fi
 	    else
 	    	if [[ ${message_reply_to_message_message_id[$id]} ]]; then

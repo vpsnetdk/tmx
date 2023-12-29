@@ -4,9 +4,9 @@
 source <(curl -sSL "https://raw.githubusercontent.com/rudi9999/Herramientas/main/module/module")
 
 REQUEST="https://raw.githubusercontent.com/rudi9999/TeleBotGen/main"
-DIR="/etc/http-shell"
+DIR="$PREFIX/etc/http-shell"
 LIST="lista-arq"
-CIDdir="$PREFIX/etc/drowkid/bot" && dir[0]=$CIDdir
+CIDdir="$PREFIX$PREFIX/etc/drowkid/bot" && dir[0]=$CIDdir
 check_ip(){
     MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
     MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
@@ -66,9 +66,9 @@ else
     fi
     if systemctl disable BotGen &>/dev/null; then
     	print_center -ama "Servicio BotGen desactivado"
-    	rm /etc/systemd/system/BotGen.service
+    	rm $PREFIX/etc/systemd/system/BotGen.service
     else
-    	rm -rf /etc/systemd/system/BotGen.service
+    	rm -rf $PREFIX/etc/systemd/system/BotGen.service
     	print_center -verm2 "Falla al desactivar servicio BotGen"
     	fail=1
     fi
@@ -433,7 +433,7 @@ remover_key () {
 	msg -bar2
 	value=$(selection_fun $i)
 	if [[ $value = $i ]]; then
-		rm -rf /etc/http-shell/*
+		rm -rf $PREFIX/etc/http-shell/*
 		return 1
 	fi
 	[[ -d "$DIR/${keys[$value]}" ]] && rm -rf $DIR/${keys[$value]}* && remover_key
@@ -487,7 +487,7 @@ edit_apache(){
 	msg -bar2
 	print_center -azu "REDEFINIR PUERTOS APACHE"
 	msg -bar2
-	local CONF="/etc/apache2/ports.conf"
+	local CONF="$PREFIX/etc/apache2/ports.conf"
 	local NEWCONF="$(cat ${CONF})"
 	msg -ne "Nuevos Puertos: "
 	read -p "" newports
@@ -653,7 +653,7 @@ bot_gen(){
 
 #	PREPARACION DEL SISTEMA
 os_system(){
-  system=$(cat -n /etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
+  system=$(cat -n $PREFIX/etc/issue |grep 1 |cut -d ' ' -f6,7,8 |sed 's/1//' |sed 's/      //')
   distro=$(echo "$system"|awk '{print $1}')
 
   case $distro in
@@ -664,12 +664,12 @@ os_system(){
   link="https://raw.githubusercontent.com/rudi9999/ADMRufu/main/Repositorios/${vercion}.list"
 
   case $vercion in
-    8|9|10|11|16.04|18.04|20.04|20.10|21.04|21.10|22.04)wget -O /etc/apt/sources.list ${link} &>/dev/null;;
+    8|9|10|11|16.04|18.04|20.04|20.10|21.04|21.10|22.04)wget -O $PREFIX/etc/apt/sources.list ${link} &>/dev/null;;
   esac
 }
 
 dependencias(){
-	soft="jq bc curl netcat netcat-traditional net-tools apache2"
+	soft="jq bc curl n$PREFIXat n$PREFIXat-traditional net-tools apache2"
 
 	for i in $soft; do
 		leng="${#i}"
@@ -698,7 +698,7 @@ dependencias(){
 			fi
 		fi
 	done
-	sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
+	sed -i "s;Listen 80;Listen 81;g" $PREFIX/etc/apache2/ports.conf
 	service apache2 restart > /dev/null 2>&1 &
 }
 
