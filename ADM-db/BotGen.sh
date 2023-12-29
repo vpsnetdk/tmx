@@ -20,7 +20,7 @@ data.json=${CIDdir}/data.json
 tmp_json=${CIDdir}/tmp.json
 confJSON=${CIDdir}/data.json
 tmpJSON=${CIDdir}/tmp.json
-LINE="━━━━━━━━━━━━━━━"
+LINE="━━━━━━━━━━━━━━━━━━━━━━━"
 
 # Importando API
 source ${CIDdir}/ShellBot.sh
