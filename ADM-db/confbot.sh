@@ -1,98 +1,17 @@
 #!/bin/bash
 
-module="$(pwd)/module"
-rm -rf ${module}
-if wget -O ${module} "https://raw.githubusercontent.com/rudi9999/Herramientas/main/module/module" &>/dev/null ;then
-	chmod +x ${module} &>/dev/null
-	source ${module}
-else
-	exit
-fi
+
+source <(curl -sSL "https://raw.githubusercontent.com/rudi9999/Herramientas/main/module/module")
 
 REQUEST="https://raw.githubusercontent.com/rudi9999/TeleBotGen/main"
 DIR="/etc/http-shell"
 LIST="lista-arq"
-CIDdir=/etc/ADM-db && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
-DIR_script=${CIDdir}/script && [[ ! -d ${DIR_script} ]] && mkdir ${DIR_script}
-[[ ! -e ${CIDdir}/conf.json ]] && {
-	touch ${CIDdir}/conf.json
-	chmod 777 ${CIDdir}/conf.json
-	echo -e "{\n}" >>  ${CIDdir}/conf.json
-}
-confJSON="${CIDdir}/conf.json"
-tmpJSON="${CIDdir}/tmp.json"
-
- chekJSON(){
- 	if [[ ! -z "$(cat ${tmpJSON})" ]]; then
- 		mv -f ${tmpJSON} ${confJSON}	
-	else
-		rm -rf ${tmpJSON}
-		clear
-		msg -bar2
-		print_center -verm2 "Operacion fallida!!!"
-		enter
-	fi
- }
-
+CIDdir="$PREFIX/etc/drowkid/bot" && dir[0]=$CIDdir
 check_ip(){
     MEU_IP=$(ip addr | grep 'inet' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | head -1)
     MEU_IP2=$(wget -qO- ipv4.icanhazip.com)
     [[ "$MEU_IP" != "$MEU_IP2" ]] && IP="$MEU_IP2" || IP="$MEU_IP"
 }
-
-function_verify () {
-  permited=$(curl -sSL "https://raw.githubusercontent.com/rudi9999/Control/master/Control-Bot")
-  if [[ $(echo $permited|grep -w "$IP") = "" ]]; then
-  	clear
-  	msg -bar
-  	print_center -ama "¡LA IP $(wget -qO- ipv4.icanhazip.com) NO ESTA AUTORIZADA!"
-  	print_center -ama "SI DESEAS USAR EL BOTGEN CONTACTE A @Rufu99"
-  	msg -bar
-  	#[[ -d /etc/ADM-db ]] && rm -rf /etc/ADM-db
-  	exit
-  fi
-}
-
-ini_token () {
-	clear
-	msg -bar2
-	print_center -azu "Ingrese el token de su bot"
-	msg -bar2
-	echo -n "TOKEN: "
-	read opcion
-	jq --arg b "$opcion" '. += {"token":$b}' ${confJSON} > ${tmpJSON}
-	mv -f ${tmpJSON} ${confJSON}
-	msg -bar2
-	print_center -verd "token se guardo con exito!"
-	msg -bar2
-	echo -e "  \033[1;37mPara tener acceso a todos los comandos del bot\n  deve iniciar el bot en la opcion 2.\n  desde su apps (telegram). ingresar al bot!\n  digite el comando \033[1;31m/id\n  \033[1;37mel bot le respodera con su ID de telegram.\n  copiar el ID e ingresar el mismo en la opcion 3"
-	enter
-	return 1
-}
-
-ini_id () {
-	clear
-	msg -bar2
-	print_center -azu "Ingrese su ID de telegram"
-	msg -bar2
-	echo -n "ID: "
-	read opcion
-
-	TOKEN="$(jq -r .token < ${CIDdir}/conf.json)"
-	URL="https://api.telegram.org/bot$TOKEN/getChatMember"
-	username=$(curl -s -X POST $URL -d chat_id="$opcion" -d user_id="$opcion" | jq -r .result.user.username)
-	arg="{\"id\":$opcion,\"username\":\"$username\"}"
-	jq --argjson a "$arg" '.users.admin += $a' ${confJSON} > ${tmpJSON}
-	mv -f ${tmpJSON} ${confJSON}
-	systemctl restart BotGen &>/dev/null
-	msg -bar2
-	print_center -verd "ID guardo con exito!"
-	msg -bar2
-	echo -e "  \033[1;37mdesde su apps (telegram). ingresar al bot!\n  digite el comando \033[1;31m/menu\n  \033[1;37mprueve si tiene acceso al menu extendido."
-	enter
-	return 1
-}
-
 start_bot(){
 	clear
 	unset fail
@@ -120,23 +39,7 @@ start_bot(){
 			return 1
 		fi
 
-echo -e "[Unit]
-Description=BotGen Service by @Rufu99
-After=network.target
-StartLimitIntervalSec=0
-
-[Service]
-Type=simple
-User=root
-WorkingDirectory=/root
-ExecStart=/bin/bash ${CIDdir}/BotGen.sh
-Restart=always
-RestartSec=3s
-
-[Install]
-WantedBy=multi-user.target" > /etc/systemd/system/BotGen.service
-
-    if systemctl enable BotGen &>/dev/null; then
+    if screen -dmS bot bash ${dir[0]}/BotGen.sh  &>/dev/null; then
     	print_center -verd "Servicio BotGen activo"
     else
     	print_center -verm2 "Falla al activar servicio BotGen"
