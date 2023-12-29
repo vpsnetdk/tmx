@@ -617,7 +617,7 @@ bot_gen(){
 	PID_GEN=$(ps x|grep -v grep|grep "BotGen.sh")
 	[[ ! $PID_GEN ]] && PID_GEN="\033[1;31moffline" || PID_GEN="\033[1;32monline"
 	msg -bar2
-	print_center -ama ">>>>>>  BotGen by Rufu99 v4.3 <<<<<<"
+	print_center -ama ">>>>>>  BotGen by drowkid01 v4.3 <<<<<<"
 	msg -bar2
 	menu_func "TOKEN DEL BOT" \
 	"ID DE USUARIO TELEGRAM" \
@@ -708,7 +708,7 @@ stop_install(){
  }
 
 install_ini(){
-	title "INSTALADOR BotGen By @Rufu99"
+	title "INSTALADOR BotGen By @drowkid01"
 	msg -ama " A continuacion se procede a actualizar los paquetes
  del systema, esto podria tomar un tiempo y requerir
  algunas preguntas propias de las actualizaciones."
@@ -716,11 +716,11 @@ install_ini(){
  	msg -ne " Desea continuar? [S/N]: "
  	read opcion
  	[[ "$opcion" != @(s|S) ]] && stop_install
- 	title "INSTALADOR BotGen By @Rufu99"
+ 	title "INSTALADOR BotGen By @drowkid01"
  	os_system
  	apt update -y
  	apt upgrade -y
- 	title "INSTALADOR BotGen By @Rufu99"
+ 	title "INSTALADOR BotGen By @drowkid01"
  	print_center -ama "$distro $vercion"
  	print_center -verd "VERIFICADO DEPENDENCIAS"
  	msg -bar3

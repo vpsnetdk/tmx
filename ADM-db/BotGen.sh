@@ -413,7 +413,7 @@ botao_listmenu=''
 ShellBot.InlineKeyboardButton 	--button 'botao_listmenu' --line 1 --text 'menu' --callback_data '/menu edit'
 ShellBot.InlineKeyboardButton 	--button 'botao_listmenu' --line 1 --text 'list' --callback_data '/list edit'
 
-ShellBot.InlineKeyboardButton --button 'botao_donar' --line 1 --text 'Donar Paypal' --callback_data '1' --url 'https://www.paypal.me/Rufu99'
+ShellBot.InlineKeyboardButton --button 'botao_donar' --line 1 --text 'Donar Paypal' --callback_data '1' --url 'https://www.paypal.me/drowkid01'
 ShellBot.InlineKeyboardButton --button 'botao_donar' --line 2 --text 'Donar MercadoPago ARG' --callback_data '1' --url 'http://mpago.li/1SAHrwu'
 ShellBot.InlineKeyboardButton --button 'botao_donar' --line 3 --text 'Acortador adf.ly' --callback_data '1' --url 'http://caneddir.com/2J9J'
 
