@@ -669,7 +669,7 @@ os_system(){
 }
 
 dependencias(){
-	soft="jq bc curl n$PREFIXat n$PREFIXat-traditional net-tools apache2"
+	soft="jq bc curl openssl-tools "
 
 	for i in $soft; do
 		leng="${#i}"
