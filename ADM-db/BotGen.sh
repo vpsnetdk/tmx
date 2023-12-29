@@ -96,7 +96,7 @@ edit_msj_boton(){
 	[[ ! -z ${callback_query_message_message_id[id]} ]] && message=${callback_query_message_message_id[id]} || message=${return[message_id]}
 
 		ShellBot.editMessageText --chat_id $var \
-								 --text "<i>$(echo -e "$bot_retorno")</i>" \
+								 --text "$(echo -e "$bot_retorno")" \
 								 --message_id "${message}" \
 								 --parse_mode html \
 								 --reply_markup "$(ShellBot.InlineKeyboardMarkup -b "$1")"
@@ -108,7 +108,7 @@ edit_msj(){
 	[[ ! -z ${callback_query_message_message_id[id]} ]] && message=${callback_query_message_message_id[id]} || message=${return[message_id]}
 
 		ShellBot.editMessageText --chat_id $var \
-								 --text "<i>$(echo -e "$bot_retorno")</i>" \
+								 --text "$(echo -e "$bot_retorno")" \
 								 --message_id "${message}" \
 								 --parse_mode html
 }
@@ -117,7 +117,7 @@ reply () {
 	[[ ! -z ${callback_query_message_chat_id[$id]} ]] && var=${callback_query_message_chat_id[$id]} || var=${message_chat_id[$id]}
 
 		 	 ShellBot.sendMessage	--chat_id  $var \
-									--text "<i>$(echo -e "$bot_retorno")</i>" \
+									--text "$(echo -e "$bot_retorno")" \
 									--parse_mode html \
 									--reply_markup "$(ShellBot.ForceReply)"
 	return 0
@@ -215,14 +215,14 @@ local bot_retorno="Copia de serguridad\n"
 		bot_retorno+="$LINE"
 		del_msj
 			ShellBot.sendMessage	--chat_id "${message_chat_id[$id]}" \
-									--text "<i>$(echo -e $bot_retorno)</i>" \
+									--text "$(echo -e $bot_retorno)" \
 									--parse_mode html
 return 0
 }
 
 msj_add () {
 	      ShellBot.sendMessage --chat_id ${1} \
-							--text "<i>$(echo -e $bot_retor)</i>" \
+							--text "$(echo -e $bot_retor)" \
 							--parse_mode html
 }
 
@@ -241,7 +241,7 @@ local bot_retorno="$LINE\n"
          bot_retorno+="Comando invalido!\n"
          bot_retorno+="$LINE\n"
 	     ShellBot.sendMessage --chat_id $var \
-							--text "<i>$(echo -e $bot_retorno)</i>" \
+							--text "$(echo -e $bot_retorno)" \
 							--parse_mode html
 	return 0	
 }
@@ -257,7 +257,7 @@ msj_fun(){
 msj_donar () {
 	[[ ! -z ${callback_query_message_chat_id[$id]} ]] && var=${callback_query_message_chat_id[$id]} || var=${message_chat_id[$id]}
 	      ShellBot.sendMessage --chat_id $var \
-							--text "<i>$(echo -e "$bot_retorno")</i>" \
+							--text "$(echo -e "$bot_retorno")" \
 							--parse_mode html \
 							--reply_markup "$(ShellBot.InlineKeyboardMarkup -b 'botao_donar')"
 	return 0
