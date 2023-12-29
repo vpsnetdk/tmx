@@ -9,7 +9,7 @@ stopBot(){
 
 trap "stopBot" INT TERM
   
-CIDdir=$PREFIX/etc/${sdirx} && [[ ! -d ${CIDdir} ]] && mkdir ${CIDdir}
+CIDdir="."
 CID="${CIDdir}/User-ID"
 NID="${CIDdir}/Key-ID"
 backup="$HOME/user-backup"
